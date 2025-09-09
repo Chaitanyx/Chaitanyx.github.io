@@ -75,3 +75,22 @@ document.querySelectorAll('.modern-btn').forEach(btn => {
         setTimeout(() => circle.remove(), 600);
     });
 });
+
+// Securely fetch user's IP and show in pawned section
+(function() {
+    const ipGuess = document.getElementById('ip-guess');
+    const pawnedSection = document.getElementById('pawned-section');
+    if (ipGuess && pawnedSection) {
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                // Only set textContent, never use innerHTML
+                ipGuess.textContent = 'Your IP address (for the pawned section): ' + data.ip;
+                pawnedSection.style.display = 'block';
+            })
+            .catch(() => {
+                ipGuess.textContent = 'Could not guess your IP address.';
+                pawnedSection.style.display = 'block';
+            });
+    }
+})();

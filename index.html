@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U are hacked !!</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Security Headers for static hosting -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://api.ipify.org; style-src 'self'; img-src 'self' data:; connect-src https://api.ipify.org; frame-ancestors 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="no-referrer">
 </head>
 <body>
     <div class="parallax-bg parallax-layer" data-speed="0.2"></div>
@@ -87,8 +92,8 @@
 
 
     <section id="contact">
-        <h2>Contact</h2>
-        <p>You can reach me at: <a href="mailto:chaitanyaladecr7@gmail.com">heeloclient@clickme.com</a></p>
+    <h2>Contact</h2>
+    <p>You can reach me at: <a href="mailto:chaitanyaladecr7@gmail.com">chaitanyaladecr7@gmail.com</a></p>
         <div class="social-links">
             <a href="https://github.com/Chaitanyx" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
@@ -106,30 +111,7 @@
             <small id="ip-guess" style="color:#888; font-size:0.8rem;"></small>
             <div style="color:#ff4444; font-size:0.9rem; margin-top:4px;">You have been pawned</div>
         </section>
-            <script>
-            // Fetch user's IP and show in both sections
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('ip-guess').textContent = 'Your IP address (for the pawned section): ' + data.ip;
-                    document.getElementById('pawned-section').style.display = 'block';
-                })
-                .catch(() => {
-                    document.getElementById('ip-guess').textContent = 'Could not guess your IP address.';
-                    document.getElementById('pawned-section').style.display = 'block';
-                });
-                // Fetch user's IP and show only in pawned section
-                fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('ip-guess').textContent = 'Your IP address (for the pawned section): ' + data.ip;
-                        document.getElementById('pawned-section').style.display = 'block';
-                    })
-                    .catch(() => {
-                        document.getElementById('ip-guess').textContent = 'Could not guess your IP address.';
-                        document.getElementById('pawned-section').style.display = 'block';
-                    });
-            </script>
+            <!-- IP fetch script moved to js/script.js for security -->
 
     <script src="js/script.js"></script>
 </body>
