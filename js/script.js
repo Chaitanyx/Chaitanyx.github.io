@@ -222,14 +222,40 @@ document.querySelectorAll('.modern-btn').forEach(btn => {
         collectHackerInfo();
         
         function collectHackerInfo() {
-            // Get IP address
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    updateInfoField('ip-address', data.ip);
+            // Security-conscious IP address collection with timeout and validation
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+            
+            fetch('https://api.ipify.org?format=json', {
+                signal: controller.signal,
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                mode: 'cors',
+                cache: 'no-cache'
+            })
+                .then(response => {
+                    clearTimeout(timeoutId);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
                 })
-                .catch(() => {
-                    updateInfoField('ip-address', 'Hidden/Protected');
+                .then(data => {
+                    // Validate IP format before using
+                    const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+                    if (data.ip && ipRegex.test(data.ip)) {
+                        updateInfoField('ip-address', data.ip);
+                    } else {
+                        updateInfoField('ip-address', 'Invalid IP format');
+                    }
+                })
+                .catch((error) => {
+                    clearTimeout(timeoutId);
+                    console.log('IP fetch failed:', error.message); // Log for debugging
+                    updateInfoField('ip-address', 'Protected/Unavailable');
                 });
             
             // Browser and system information
@@ -296,15 +322,27 @@ document.querySelectorAll('.modern-btn').forEach(btn => {
         function updateInfoField(fieldId, value) {
             const field = document.getElementById(fieldId);
             if (field) {
+                // Sanitize the value to prevent XSS
+                const sanitizedValue = String(value).replace(/[<>&"']/g, function(match) {
+                    const entities = {
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '&': '&amp;',
+                        '"': '&quot;',
+                        "'": '&#39;'
+                    };
+                    return entities[match];
+                });
+                
                 // Add typing effect
                 let currentText = '';
-                const targetText = value.toString();
+                const targetText = sanitizedValue;
                 let index = 0;
                 
                 const typeInterval = setInterval(() => {
                     if (index < targetText.length) {
                         currentText += targetText.charAt(index);
-                        field.textContent = currentText;
+                        field.textContent = currentText; // Use textContent for security
                         index++;
                     } else {
                         clearInterval(typeInterval);

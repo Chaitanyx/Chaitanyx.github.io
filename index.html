@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>U are hacked !!</title>
+    <title>Chaitanya - Cybersecurity Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Security Headers for static hosting -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://api.ipify.org; style-src 'self'; img-src 'self' data:; connect-src https://api.ipify.org; frame-ancestors 'none';">
+    
+    <!-- Enhanced Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.ipify.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), fullscreen=(self)">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Preconnect for performance and security -->
+    <link rel="preconnect" href="https://api.ipify.org" crossorigin>
 </head>
 <body>
     <!-- Hacking Loading Screen -->

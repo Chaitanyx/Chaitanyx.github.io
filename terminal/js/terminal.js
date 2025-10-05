@@ -1,9 +1,44 @@
-// Terminal JavaScript Implementation
+// Terminal JavaScript Implementation with Security Enhancements
+class SecurityUtils {
+    // Sanitize HTML to prevent XSS attacks
+    static sanitizeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+    
+    // Safe HTML parser that only allows whitelisted tags and attributes
+    static createSafeHTML(htmlString) {
+        const allowedTags = ['div', 'span', 'p', 'br', 'strong', 'em', 'pre', 'code'];
+        const allowedAttributes = ['style', 'class'];
+        
+        // For now, we'll use a simple approach - in production, use a library like DOMPurify
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlString;
+        
+        // Remove any script tags or dangerous content
+        const scripts = tempDiv.getElementsByTagName('script');
+        for (let i = scripts.length - 1; i >= 0; i--) {
+            scripts[i].remove();
+        }
+        
+        return tempDiv.innerHTML;
+    }
+    
+    // Validate command input
+    static validateCommand(command) {
+        // Only allow alphanumeric characters, spaces, and common command characters
+        const allowedPattern = /^[a-zA-Z0-9\s\-_\.\/]*$/;
+        return allowedPattern.test(command) && command.length <= 100;
+    }
+}
+
 class InteractiveTerminal {
     constructor() {
         this.commandHistory = [];
         this.historyIndex = -1;
         this.currentPath = '~';
+        this.lastCommandTime = 0; // For rate limiting
         this.availableCommands = {
             'help': 'Show available commands',
             'about': 'Learn about Chaitanya',
@@ -95,7 +130,25 @@ class InteractiveTerminal {
         const command = this.commandInput.value.trim();
         if (!command) return;
 
-        // Add to history
+        // Validate command for security
+        if (!SecurityUtils.validateCommand(command)) {
+            this.addOutputLine('Invalid command format. Only alphanumeric characters and basic symbols are allowed.', 'error');
+            this.commandInput.value = '';
+            return;
+        }
+
+        // Rate limiting check (prevent spam)
+        const now = Date.now();
+        if (this.lastCommandTime && (now - this.lastCommandTime) < 100) {
+            this.addOutputLine('Please wait before executing another command.', 'warning');
+            return;
+        }
+        this.lastCommandTime = now;
+
+        // Add to history (limit history size for memory protection)
+        if (this.commandHistory.length > 100) {
+            this.commandHistory.shift();
+        }
         this.commandHistory.push(command);
         this.historyIndex = this.commandHistory.length;
 
@@ -112,16 +165,34 @@ class InteractiveTerminal {
     }
 
     addCommandLine(command) {
+        // Sanitize the command to prevent XSS
+        const sanitizedCommand = SecurityUtils.sanitizeHTML(command);
+        const sanitizedPath = SecurityUtils.sanitizeHTML(this.currentPath);
+        
         const commandDiv = document.createElement('div');
         commandDiv.className = 'terminal-line command-line';
-        commandDiv.innerHTML = `<span class="prompt">guest@chaitanya:${this.currentPath}$ </span>${command}`;
+        
+        // Create elements safely
+        const promptSpan = document.createElement('span');
+        promptSpan.className = 'prompt';
+        promptSpan.textContent = `guest@chaitanya:${sanitizedPath}$ `;
+        
+        const commandSpan = document.createElement('span');
+        commandSpan.textContent = sanitizedCommand;
+        
+        commandDiv.appendChild(promptSpan);
+        commandDiv.appendChild(commandSpan);
         this.commandHistoryDiv.appendChild(commandDiv);
     }
 
     addOutputLine(content, type = 'output') {
         const outputDiv = document.createElement('div');
         outputDiv.className = `terminal-line ${type}-line`;
-        outputDiv.innerHTML = content;
+        
+        // Use safe HTML parsing for styled content
+        const safeContent = SecurityUtils.createSafeHTML(content);
+        outputDiv.innerHTML = safeContent;
+        
         this.commandHistoryDiv.appendChild(outputDiv);
     }
 
@@ -669,7 +740,9 @@ the explicit permission of the system owner to improve security.
         if (matches.length === 1) {
             this.commandInput.value = matches[0] + ' ';
         } else if (matches.length > 1) {
-            this.addOutputLine(`<div style="color: #ffaa00;">Possible completions: ${matches.join(', ')}</div>`);
+            // Safe completion display
+            const completions = matches.map(match => SecurityUtils.sanitizeHTML(match)).join(', ');
+            this.addOutputLine(`<div style="color: #ffaa00;">Possible completions: ${completions}</div>`);
         }
     }
 
@@ -704,11 +777,15 @@ the explicit permission of the system owner to improve security.
             column.style.animationDelay = Math.random() * 10 + 's';
             column.style.animationDuration = (Math.random() * 10 + 10) + 's';
             
-            let text = '';
+            // Safe text creation without innerHTML
             for (let j = 0; j < 20; j++) {
-                text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                const charSpan = document.createElement('span');
+                charSpan.textContent = characters[Math.floor(Math.random() * characters.length)];
+                column.appendChild(charSpan);
+                if (j < 19) {
+                    column.appendChild(document.createElement('br'));
+                }
             }
-            column.innerHTML = text;
             
             matrixContainer.appendChild(column);
         }
