@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconnaissance Lab - Cybersecurity Research</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.ipify.org https://ipapi.co; font-src 'self' data:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <link rel="stylesheet" href="css/reconnaissance.css">
+    <link rel="icon" type="image/svg+xml" href="../images/profile.svg">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="nav-buttons">
+                <a href="../index.html" class="nav-btn">← Portfolio</a>
+                <a href="../terminal/" class="nav-btn">Terminal</a>
+            </div>
+            <h1>🔍 Reconnaissance Laboratory</h1>
+            <p class="subtitle">Advanced Cybersecurity Research & Intelligence Gathering</p>
+            <div class="warning-banner">
+                <span class="warning-icon">⚠️</span>
+                <strong>Educational Use Only:</strong> This tool is for cybersecurity research and educational purposes.
+                All data collection is transparent and with user consent.
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Privacy Controls -->
+            <section class="section privacy-section">
+                <h2>🛡️ Privacy Controls</h2>
+                <div class="privacy-controls">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="enableCollection" checked>
+                        <span class="slider"></span>
+                        Enable Data Collection
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="enableFingerprinting">
+                        <span class="slider"></span>
+                        Enable Device Fingerprinting
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="enableBehavioral">
+                        <span class="slider"></span>
+                        Enable Behavioral Analytics
+                    </label>
+                    <button class="btn-clear" onclick="clearAllData()">Clear All Data</button>
+                </div>
+            </section>
+
+            <!-- Network Intelligence -->
+            <section class="section">
+                <h2>🌐 Network Intelligence</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>IP Information</h3>
+                        <div id="ipInfo" class="data-display">
+                            <div class="loading">Gathering IP information...</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Connection Analysis</h3>
+                        <div id="connectionInfo" class="data-display">
+                            <div class="loading">Analyzing connection...</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>DNS Information</h3>
+                        <div id="dnsInfo" class="data-display">
+                            <div class="loading">Resolving DNS...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Device Fingerprinting -->
+            <section class="section">
+                <h2>📱 Device Fingerprinting</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>System Information</h3>
+                        <div id="systemInfo" class="data-display">
+                            <div class="loading">Analyzing system...</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Browser Profile</h3>
+                        <div id="browserInfo" class="data-display">
+                            <div class="loading">Profiling browser...</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Hardware Fingerprint</h3>
+                        <div id="hardwareInfo" class="data-display">
+                            <div class="loading">Reading hardware...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Assessment -->
+            <section class="section">
+                <h2>🔐 Security Assessment</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Vulnerability Scan</h3>
+                        <div id="vulnScan" class="data-display">
+                            <div class="loading">Scanning for vulnerabilities...</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Security Headers</h3>
+                        <div id="securityHeaders" class="data-display">
+                            <div class="loading">Checking security headers...</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Cookie Analysis</h3>
+                        <div id="cookieAnalysis" class="data-display">
+                            <div class="loading">Analyzing cookies...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Behavioral Analytics -->
+            <section class="section">
+                <h2>📊 Behavioral Analytics</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Mouse Tracking</h3>
+                        <canvas id="mouseCanvas" width="300" height="200"></canvas>
+                        <div id="mouseStats" class="stats">
+                            <span>Clicks: <span id="clickCount">0</span></span>
+                            <span>Distance: <span id="mouseDistance">0</span>px</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Keystroke Patterns</h3>
+                        <textarea id="keystrokeArea" placeholder="Type here to analyze keystroke patterns..."></textarea>
+                        <div id="keystrokeStats" class="stats">
+                            <span>WPM: <span id="wpmCount">0</span></span>
+                            <span>Patterns: <span id="patternCount">0</span></span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Session Timeline</h3>
+                        <div id="sessionTimeline" class="timeline">
+                            <div class="timeline-item">
+                                <span class="time" id="sessionStart">00:00:00</span>
+                                <span class="event">Session Started</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Export -->
+            <section class="section">
+                <h2>📤 Data Export & Analysis</h2>
+                <div class="export-controls">
+                    <button class="btn-export" onclick="exportData('json')">Export JSON</button>
+                    <button class="btn-export" onclick="exportData('csv')">Export CSV</button>
+                    <button class="btn-export" onclick="exportData('xml')">Export XML</button>
+                    <button class="btn-export" onclick="generateReport()">Generate Report</button>
+                </div>
+                <div class="data-summary">
+                    <h3>Collection Summary</h3>
+                    <div id="dataSummary" class="summary-stats">
+                        <span>Total Data Points: <span id="totalDataPoints">0</span></span>
+                        <span>Collection Time: <span id="collectionTime">0</span>s</span>
+                        <span>Storage Used: <span id="storageUsed">0</span>KB</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Chaitanya Lade | Educational Cybersecurity Research</p>
+            <p class="disclaimer">All data collection is performed with user consent for educational purposes only.</p>
+        </footer>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="floating-btn" onclick="toggleLiveMode()">
+        <span id="liveModeIcon">📡</span>
+    </div>
+
+    <script src="js/reconnaissance.js"></script>
+    <script src="js/fingerprinting.js"></script>
+    <script src="js/behavioral.js"></script>
+    <script src="js/security-assessment.js"></script>
+</body>
+</html>

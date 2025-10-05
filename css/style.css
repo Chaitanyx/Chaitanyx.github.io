@@ -1932,6 +1932,102 @@ footer {
     right: 90px;
 }
 
+/* Reconnaissance FAB Styles */
+.recon-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 2px 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    position: absolute;
+    bottom: 30px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.recon-fab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.recon-fab:hover::before {
+    transform: translateX(100%);
+}
+
+.recon-fab:hover {
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 2px 15px rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #00ff88 100%);
+}
+
+.recon-icon {
+    font-size: 28px;
+    color: #000;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    position: relative;
+    animation: iconSpin 3s linear infinite;
+}
+
+.recon-tooltip {
+    position: absolute;
+    right: 85px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+    color: #ff6b35;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-width: 140px;
+    text-align: center;
+}
+
+.recon-tooltip::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(0, 0, 0, 0.95);
+}
+
+.recon-fab:hover .recon-tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 90px;
+}
+
 @keyframes terminalPulse {
     0%, 100% {
         transform: scale(1);
@@ -1956,6 +2052,15 @@ footer {
     }
     100% {
         transform: translateY(-50%) translateX(3px);
+    }
+}
+
+@keyframes iconSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 
