@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaitanya's Interactive Terminal</title>
+    <link rel="stylesheet" href="css/terminal.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Terminal Header -->
+        <div class="terminal-header">
+            <div class="terminal-controls">
+                <div class="control close"></div>
+                <div class="control minimize"></div>
+                <div class="control maximize"></div>
+            </div>
+            <div class="terminal-title">
+                <i class="fas fa-terminal"></i>
+                chaitanya@cybersec:~$ Interactive Portfolio Terminal
+            </div>
+            <div class="terminal-actions">
+                <a href="../index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+
+        <!-- Terminal Body -->
+        <div class="terminal-body" id="terminal">
+            <div class="terminal-content" id="terminal-content">
+                <!-- Welcome Message -->
+                <div class="terminal-line welcome-message">
+                    <pre class="ascii-art">
+   ____                     _       
+  / ___| _   _ _ __   ___ _ __(_) ___ 
+ | |   | | | | '_ \ / _ \ '__| |/ __|
+ | |___| |_| | |_) |  __/ |  | | (__ 
+  \____|\__, |_.__/ \___|_|  |_|\___|
+        |___/                       
+                    </pre>
+                    <p class="welcome-text">Welcome to Chaitanya's Interactive Terminal!</p>
+                    <p class="help-text">Type <span class="command-highlight">help</span> to see available commands.</p>
+                </div>
+
+                <!-- Command History -->
+                <div id="command-history"></div>
+
+                <!-- Current Input Line -->
+                <div class="input-line">
+                    <span class="prompt">guest@chaitanya:~$ </span>
+                    <input type="text" id="command-input" class="command-input" autocomplete="off" spellcheck="false">
+                    <span class="cursor" id="cursor">|</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Command Suggestions -->
+        <div class="suggestions" id="suggestions"></div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+        <p>Initializing Terminal...</p>
+    </div>
+
+    <!-- Floating Back Button -->
+    <div class="floating-back-btn">
+        <a href="../index.html" class="back-fab" title="Back to Portfolio">
+            <i class="back-icon">🏠</i>
+            <span class="back-tooltip">Back to Portfolio</span>
+        </a>
+    </div>
+
+    <script src="js/terminal.js"></script>
+</body>
+</html>

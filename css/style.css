@@ -1500,3 +1500,482 @@ footer {
         margin-left: 0;
     }
 }
+
+/* Section Header Captions */
+.section-caption {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.9);
+    text-align: center;
+    margin: -15px 0 25px 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 1;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.section-caption:hover {
+    opacity: 1;
+    color: rgba(148, 163, 184, 1);
+    transform: scale(1.05);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Animated Skills Grid */
+.skills-grid {
+    display: grid;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.skill-item {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+.skill-header {
+    margin-bottom: 10px;
+}
+
+.skill-name {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1rem;
+    display: block;
+}
+
+.skill-desc {
+    font-size: 0.9rem;
+    color: rgba(148, 163, 184, 0.9);
+    margin: 0;
+    font-style: italic;
+}
+
+/* Enhanced Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.project-card {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+.project-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+}
+
+.project-card h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tech-tag {
+    background: rgba(59, 130, 246, 0.2);
+    color: #00aaff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.project-status {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.status-indicator {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-indicator.completed {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.status-indicator.active {
+    background: rgba(249, 115, 22, 0.2);
+    color: #f97316;
+    border: 1px solid rgba(249, 115, 22, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Animated Certification Badges */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.cert-badge {
+    background: rgba(15, 23, 42, 0.9);
+    border: 2px solid rgba(147, 51, 234, 0.4);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        rgba(147, 51, 234, 0.2), 
+        rgba(59, 130, 246, 0.2), 
+        rgba(34, 197, 94, 0.2), 
+        rgba(249, 115, 22, 0.2), 
+        rgba(239, 68, 68, 0.2),
+        rgba(147, 51, 234, 0.2)
+    );
+    animation: certRotate 6s linear infinite;
+    z-index: -1;
+}
+
+@keyframes certRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cert-badge:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(147, 51, 234, 0.8);
+    box-shadow: 
+        0 15px 35px rgba(147, 51, 234, 0.4),
+        0 0 30px rgba(147, 51, 234, 0.3);
+}
+
+.cert-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 12px rgba(147, 51, 234, 0.7));
+    animation: iconGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes iconGlow {
+    0% { 
+        filter: drop-shadow(0 0 12px rgba(147, 51, 234, 0.7));
+        transform: scale(1);
+    }
+    100% { 
+        filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.9));
+        transform: scale(1.1);
+    }
+}
+
+.cert-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #ffffff, #e2e8f0, #ffffff);
+    background-size: 200% 200%;
+    animation: textShimmer 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes textShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.cert-issuer {
+    background: linear-gradient(45deg, 
+        rgba(147, 51, 234, 1), 
+        rgba(59, 130, 246, 1), 
+        rgba(34, 197, 94, 1), 
+        rgba(249, 115, 22, 1)
+    );
+    background-size: 300% 300%;
+    animation: gradientShift 4s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+/* Responsive Design for Enhanced Components */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .project-card {
+        padding: 20px;
+    }
+    
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .cert-badge {
+        padding: 15px;
+    }
+    
+    .tech-tag {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .project-icon {
+        font-size: 2.5rem;
+    }
+    
+    .cert-icon {
+        font-size: 2rem;
+    }
+}
+
+/* Floating Terminal Button */
+.floating-terminal-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    animation: terminalPulse 2s ease-in-out infinite;
+}
+
+.terminal-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #00ff88 0%, #00aaff 100%);
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 2px 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.terminal-fab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.terminal-fab:hover::before {
+    transform: translateX(100%);
+}
+
+.terminal-fab:hover {
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 2px 15px rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #00ff88 0%, #00aaff 50%, #ff6b6b 100%);
+}
+
+.terminal-icon {
+    font-size: 28px;
+    color: #000;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    position: relative;
+    animation: iconBounce 2s ease-in-out infinite;
+}
+
+.terminal-tooltip {
+    position: absolute;
+    right: 85px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+    color: #00ff88;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-width: 120px;
+    text-align: center;
+}
+
+.terminal-tooltip::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(0, 0, 0, 0.95);
+}
+
+.terminal-tooltip::after {
+    content: '🚀';
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    animation: rocketFloat 1s ease-in-out infinite alternate;
+}
+
+.terminal-fab:hover .terminal-tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 90px;
+}
+
+@keyframes terminalPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes rocketFloat {
+    0% {
+        transform: translateY(-50%) translateX(0);
+    }
+    100% {
+        transform: translateY(-50%) translateX(3px);
+    }
+}
+
+/* Responsive adjustments for floating button */
+@media (max-width: 768px) {
+    .floating-terminal-btn {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .terminal-fab {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .terminal-icon {
+        font-size: 24px;
+    }
+    
+    .terminal-tooltip {
+        display: none; /* Hide tooltip on mobile */
+    }
+}
