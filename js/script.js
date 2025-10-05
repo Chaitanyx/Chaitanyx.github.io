@@ -662,6 +662,32 @@ class EasterEggController {
     }
 
     checkIfAlreadyUnlocked() {
+        // Check if cleanup was done (user returned from recon lab)
+        if (localStorage.getItem('reconLabCleanupDone') === 'true') {
+            // Reset everything
+            localStorage.removeItem('reconLabUnlocked');
+            localStorage.removeItem('reconLabCleanupDone');
+            localStorage.removeItem('reconLabVisited');
+            localStorage.removeItem('reconLabVisitTime');
+            
+            // Ensure button stays hidden
+            const easterEgg = document.getElementById('reconEasterEgg');
+            if (easterEgg) {
+                easterEgg.classList.remove('revealed');
+                this.isRevealed = false;
+            }
+            
+            // Clear any remaining cookies
+            this.clearAllCookies();
+            
+            // Show reset message
+            this.showResetMessage();
+            
+            console.log('🔄 Easter egg reset - ready for new discovery!');
+            return;
+        }
+        
+        // Normal unlock check
         if (localStorage.getItem('reconLabUnlocked') === 'true') {
             setTimeout(() => {
                 const easterEgg = document.getElementById('reconEasterEgg');
@@ -671,6 +697,71 @@ class EasterEggController {
                 }
             }, 1000);
         }
+    }
+
+    clearAllCookies() {
+        try {
+            // Get all cookies
+            const cookies = document.cookie.split(";");
+            
+            // Clear each cookie
+            for (let cookie of cookies) {
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+                
+                if (name) {
+                    // Clear for current domain and all possible paths
+                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname}`;
+                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.${window.location.hostname}`;
+                    
+                    // Also try with secure flag
+                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;secure`;
+                }
+            }
+            
+            console.log('🍪 Portfolio cookies cleared');
+        } catch (error) {
+            console.error('Portfolio cookie clearing failed:', error);
+        }
+    }
+
+    showResetMessage() {
+        const message = document.createElement('div');
+        message.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.95), rgba(22, 163, 74, 0.95));
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            animation: slideInRight 0.5s ease-out;
+            max-width: 300px;
+        `;
+        
+        message.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 16px;">🔄</span>
+                <div>
+                    <div>Lab Session Complete</div>
+                    <small style="font-size: 12px; opacity: 0.9;">Data cleared • Easter egg reset</small>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            message.style.animation = 'slideOutRight 0.5s ease-out forwards';
+            setTimeout(() => message.remove(), 500);
+        }, 4000);
     }
 }
 
@@ -696,6 +787,24 @@ style.textContent = `
         to {
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.8);
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideOutRight {
+        to {
+            opacity: 0;
+            transform: translateX(100%);
         }
     }
 `;

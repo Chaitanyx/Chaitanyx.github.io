@@ -651,4 +651,91 @@ function generateReport() {
 // Initialize the reconnaissance lab when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     window.reconLab = new ReconnaissanceLab();
+    
+    // Mark that user has visited the recon lab
+    localStorage.setItem('reconLabVisited', 'true');
+    localStorage.setItem('reconLabVisitTime', Date.now().toString());
+    
+    // Setup cleanup on page unload
+    setupReconLabCleanup();
 });
+
+// Cleanup function to reset Easter egg state when leaving recon lab
+function setupReconLabCleanup() {
+    // Track when user navigates away from recon lab
+    window.addEventListener('beforeunload', () => {
+        // Clear the unlock state so button will be hidden again
+        localStorage.removeItem('reconLabUnlocked');
+        
+        // Clear all cookies for privacy
+        clearAllCookies();
+        
+        // Mark that cleanup happened
+        localStorage.setItem('reconLabCleanupDone', 'true');
+    });
+    
+    // Also handle navigation via links
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && (link.href.includes('index.html') || link.href.endsWith('/'))) {
+            // User is navigating back to portfolio
+            localStorage.removeItem('reconLabUnlocked');
+            clearAllCookies();
+            localStorage.setItem('reconLabCleanupDone', 'true');
+        }
+    });
+}
+
+// Function to clear all cookies
+function clearAllCookies() {
+    try {
+        // Get all cookies
+        const cookies = document.cookie.split(";");
+        
+        // Clear each cookie
+        for (let cookie of cookies) {
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+            
+            if (name) {
+                // Clear for current domain
+                document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+                document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname}`;
+                document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.${window.location.hostname}`;
+            }
+        }
+        
+        console.log('🍪 All cookies cleared for privacy');
+    } catch (error) {
+        console.error('Cookie clearing failed:', error);
+    }
+    
+    // Clear localStorage related to tracking
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (
+            key.includes('recon') || 
+            key.includes('fingerprint') || 
+            key.includes('tracking') ||
+            key.includes('analytics') ||
+            key.includes('session')
+        )) {
+            keysToRemove.push(key);
+        }
+    }
+    
+    keysToRemove.forEach(key => {
+        if (key !== 'reconLabCleanupDone') { // Keep cleanup marker
+            localStorage.removeItem(key);
+        }
+    });
+    
+    // Clear sessionStorage
+    try {
+        sessionStorage.clear();
+        console.log('🗃️ Session storage cleared');
+    } catch (error) {
+        console.error('Session storage clearing failed:', error);
+    }
+}
