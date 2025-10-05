@@ -387,3 +387,322 @@ document.querySelectorAll('.modern-btn, .social-links a').forEach(element => {
         setTimeout(() => circle.remove(), 600);
     });
 });
+
+// 🕵️ EASTER EGG: Reconnaissance Lab Secret Access
+// Multiple activation methods for discovering the hidden reconnaissance lab
+class EasterEggController {
+    constructor() {
+        this.konamiCode = [
+            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+            'KeyB', 'KeyA'
+        ];
+        this.konamiProgress = 0;
+        this.secretClicks = 0;
+        this.lastClickTime = 0;
+        this.isRevealed = false;
+        this.secretKeySequence = ['h', 'a', 'c', 'k', 'e', 'r'];
+        this.keySequenceProgress = 0;
+        
+        this.initEasterEgg();
+    }
+
+    initEasterEgg() {
+        // Method 1: Konami Code
+        document.addEventListener('keydown', (e) => this.checkKonamiCode(e));
+        
+        // Method 2: Secret Click Sequence on Portfolio Title
+        const title = document.querySelector('h1');
+        if (title) {
+            title.addEventListener('click', (e) => this.handleSecretClicks(e));
+            title.style.cursor = 'pointer';
+            title.title = 'Something feels different...';
+        }
+        
+        // Method 3: Type "hacker" anywhere on the page
+        document.addEventListener('keypress', (e) => this.checkSecretWord(e));
+        
+        // Method 4: Triple-click on the terminal button
+        const terminalBtn = document.querySelector('.terminal-fab');
+        if (terminalBtn) {
+            terminalBtn.addEventListener('dblclick', (e) => this.handleTerminalDoubleClick(e));
+        }
+        
+        // Method 5: Console command for developers
+        this.setupConsoleCommand();
+        
+        // Method 6: Mouse pattern (draw a circle around the page)
+        this.setupMousePattern();
+    }
+
+    checkKonamiCode(e) {
+        if (this.isRevealed) return;
+        
+        if (e.code === this.konamiCode[this.konamiProgress]) {
+            this.konamiProgress++;
+            console.log(`🎯 Konami progress: ${this.konamiProgress}/${this.konamiCode.length}`);
+            
+            if (this.konamiProgress === this.konamiCode.length) {
+                this.revealEasterEgg('konami');
+            }
+        } else {
+            this.konamiProgress = 0;
+        }
+    }
+
+    handleSecretClicks(e) {
+        if (this.isRevealed) return;
+        
+        const now = Date.now();
+        const timeDiff = now - this.lastClickTime;
+        
+        // Clicks must be within 500ms of each other
+        if (timeDiff < 500) {
+            this.secretClicks++;
+            console.log(`🔍 Secret clicks: ${this.secretClicks}/7`);
+            
+            if (this.secretClicks >= 7) {
+                this.revealEasterEgg('clicks');
+            }
+        } else {
+            this.secretClicks = 1;
+        }
+        
+        this.lastClickTime = now;
+        
+        // Visual feedback
+        e.target.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            e.target.style.transform = 'scale(1)';
+        }, 100);
+    }
+
+    checkSecretWord(e) {
+        if (this.isRevealed) return;
+        
+        const char = e.key.toLowerCase();
+        
+        if (char === this.secretKeySequence[this.keySequenceProgress]) {
+            this.keySequenceProgress++;
+            console.log(`🔤 Secret word progress: ${this.keySequenceProgress}/${this.secretKeySequence.length}`);
+            
+            if (this.keySequenceProgress === this.secretKeySequence.length) {
+                this.revealEasterEgg('secret-word');
+            }
+        } else {
+            this.keySequenceProgress = 0;
+        }
+    }
+
+    handleTerminalDoubleClick(e) {
+        if (this.isRevealed) return;
+        
+        e.preventDefault();
+        
+        // Add special effect to terminal button
+        const btn = e.currentTarget;
+        btn.style.animation = 'konamiSuccess 2s ease-in-out';
+        
+        setTimeout(() => {
+            this.revealEasterEgg('terminal-hack');
+            btn.style.animation = '';
+        }, 1000);
+    }
+
+    setupConsoleCommand() {
+        // Add a hidden global function for developers
+        window.unlockReconLab = () => {
+            if (this.isRevealed) {
+                console.log('🔍 Reconnaissance Lab is already unlocked!');
+                return;
+            }
+            this.revealEasterEgg('console');
+        };
+        
+        // Easter egg message in console
+        console.log('%c🕵️ DEVELOPER EASTER EGG 🕵️', 'color: #ff6b35; font-size: 16px; font-weight: bold;');
+        console.log('%cTry typing: unlockReconLab()', 'color: #00ff88; font-size: 12px;');
+        console.log('%cOr discover other secret methods...', 'color: #888; font-size: 10px;');
+    }
+
+    setupMousePattern() {
+        let mouseTrail = [];
+        const maxTrailLength = 50;
+        
+        document.addEventListener('mousemove', (e) => {
+            if (this.isRevealed) return;
+            
+            mouseTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+            
+            // Keep only recent movements
+            if (mouseTrail.length > maxTrailLength) {
+                mouseTrail.shift();
+            }
+            
+            // Check for circular pattern
+            if (mouseTrail.length >= maxTrailLength) {
+                if (this.isCircularPattern(mouseTrail)) {
+                    this.revealEasterEgg('mouse-circle');
+                }
+            }
+        });
+    }
+
+    isCircularPattern(trail) {
+        if (trail.length < 30) return false;
+        
+        // Calculate center point
+        const centerX = trail.reduce((sum, point) => sum + point.x, 0) / trail.length;
+        const centerY = trail.reduce((sum, point) => sum + point.y, 0) / trail.length;
+        
+        // Calculate distances from center
+        const distances = trail.map(point => 
+            Math.sqrt(Math.pow(point.x - centerX, 2) + Math.pow(point.y - centerY, 2))
+        );
+        
+        // Check if distances are relatively consistent
+        const avgDistance = distances.reduce((sum, dist) => sum + dist, 0) / distances.length;
+        const variance = distances.reduce((sum, dist) => sum + Math.pow(dist - avgDistance, 2), 0) / distances.length;
+        
+        // Must be a decent-sized circle and consistent radius
+        return avgDistance > 100 && variance < avgDistance * 0.3;
+    }
+
+    revealEasterEgg(method) {
+        if (this.isRevealed) return;
+        
+        this.isRevealed = true;
+        const easterEgg = document.getElementById('reconEasterEgg');
+        
+        if (easterEgg) {
+            easterEgg.classList.add('revealed');
+            
+            // Show success message
+            this.showSuccessMessage(method);
+            
+            // Add special effects
+            this.addSpecialEffects();
+            
+            // Store in localStorage so it stays revealed
+            localStorage.setItem('reconLabUnlocked', 'true');
+            
+            console.log(`🎉 EASTER EGG UNLOCKED via ${method}!`);
+        }
+    }
+
+    showSuccessMessage(method) {
+        const messages = {
+            'konami': '🎮 Konami Code Master!',
+            'clicks': '🖱️ Click Detective!',
+            'secret-word': '🔤 Word Wizard!',
+            'terminal-hack': '💻 Terminal Hacker!',
+            'console': '🛠️ Developer Mode!',
+            'mouse-circle': '🌀 Mouse Magician!'
+        };
+        
+        const message = document.createElement('div');
+        message.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.95), rgba(247, 147, 30, 0.95));
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            animation: easterEggReveal 1s ease-out;
+        `;
+        
+        message.innerHTML = `
+            ${messages[method] || '🔍 Secret Unlocked!'}
+            <br>
+            <small style="font-size: 14px; opacity: 0.8;">Reconnaissance Lab Activated!</small>
+        `;
+        
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            message.style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => message.remove(), 500);
+        }, 3000);
+    }
+
+    addSpecialEffects() {
+        // Create particle effect
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                this.createParticle();
+            }, i * 100);
+        }
+    }
+
+    createParticle() {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #ff6b35;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            left: ${Math.random() * window.innerWidth}px;
+            top: ${Math.random() * window.innerHeight}px;
+            animation: particleFloat 2s ease-out forwards;
+        `;
+        
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 2000);
+    }
+
+    checkIfAlreadyUnlocked() {
+        if (localStorage.getItem('reconLabUnlocked') === 'true') {
+            setTimeout(() => {
+                const easterEgg = document.getElementById('reconEasterEgg');
+                if (easterEgg) {
+                    easterEgg.classList.add('revealed');
+                    this.isRevealed = true;
+                }
+            }, 1000);
+        }
+    }
+}
+
+// Add particle animation CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes particleFloat {
+        0% {
+            opacity: 1;
+            transform: translateY(0) scale(0);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(-30px) scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-60px) scale(0);
+        }
+    }
+    
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize the Easter Egg when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const easterEgg = new EasterEggController();
+    easterEgg.checkIfAlreadyUnlocked();
+});
