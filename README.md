@@ -1,6 +1,6 @@
 # 🕵️ Cybersecurity Portfolio - "U have been pawned !!"
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://chaitanyx.github.io/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://chaitanyalade.me/)
 [![Security](https://img.shields.io/badge/Security-Hardened-blue)](#security-features)
 [![Interactive](https://img.shields.io/badge/Experience-Interactive-orange)](#interactive-features)
 [![Privacy](https://img.shields.io/badge/Privacy-First-green)](#privacy-features)
@@ -175,7 +175,7 @@ Chaitanyx.github.io/
 ## 🚀 **Getting Started**
 
 ### **Live Demo**
-Visit the live portfolio: **[https://chaitanyx.github.io/](https://chaitanyx.github.io/)**
+Visit the live portfolio: **[https://chaitanyalade.me/](https://chaitanyalade.me/)**
 
 ### **Local Development**
 ```bash
@@ -234,7 +234,7 @@ This portfolio serves as an educational resource for the cybersecurity community
 
 **Chaitanya Lade** - Cybersecurity Enthusiast & Developer
 
-- **Portfolio**: [https://chaitanyx.github.io/](https://chaitanyx.github.io/)
+- **Portfolio**: [https://chaitanyalade.me/](https://chaitanyalade.me/)
 - **GitHub**: [@Chaitanyx](https://github.com/Chaitanyx)
 - **LinkedIn**: [Connect with me](https://linkedin.com/in/chaitanyalade)
 
