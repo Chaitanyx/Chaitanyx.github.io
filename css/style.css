@@ -1120,15 +1120,13 @@ h2 {
 footer {
     text-align: center;
     padding: 28px;
-    background: rgba(15, 23, 42, 0.9);
+    background: transparent;
     color: var(--text-secondary);
     margin-top: 40px;
-    border-radius: 18px;
-    box-shadow: 
-        0 2px 12px rgba(0, 0, 0, 0.2),
-        0 0 0 1px rgba(148, 163, 184, 0.15);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    backdrop-filter: blur(6px) saturate(120%);
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    backdrop-filter: none;
 }
 
 /* Animated gradient border for Apple/Google-like effect */
