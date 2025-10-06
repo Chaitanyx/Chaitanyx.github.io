@@ -138,9 +138,8 @@ sections.forEach(section => {
 
 
 
-// Floating navigation on scroll - appears when scroll indicator starts glowing
+// Floating navigation on scroll - appears when scroll indicator starts glowing and stays persistent
 let lastScrollTop = 0;
-let scrollTimeout;
 const floatingNav = document.querySelector('.floating-nav');
 
 window.addEventListener('scroll', function() {
@@ -151,23 +150,24 @@ window.addEventListener('scroll', function() {
         const scrolledPercent = (window.scrollY / docHeight) * 100;
         scrollIndicator.style.width = scrolledPercent + '%';
         
-        // Floating navigation logic - show when scroll indicator starts appearing (scrolling has begun)
+        // Floating navigation logic - show when scroll indicator starts appearing and keep persistent
         if (floatingNav) {
             const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             
-            // Show floating nav when scroll indicator has width (any scrolling has occurred)
-            if (scrolledPercent > 0 && currentScroll > 50) {
+            // Show floating nav when any scrolling has occurred (progress bar > 0)
+            if (scrolledPercent > 0) {
                 if (!floatingNav.classList.contains('show')) {
                     floatingNav.classList.remove('hide');
                     floatingNav.classList.add('show');
-                    console.log('Showing floating nav with scroll indicator at:', scrolledPercent.toFixed(1) + '%');
+                    console.log('Showing floating nav - scroll progress:', scrolledPercent.toFixed(1) + '%');
                 }
+                // Keep it visible - no hiding during scroll
             } else {
-                // At very top - hide floating nav
+                // Only hide when completely at top (progress bar = 0)
                 if (floatingNav.classList.contains('show')) {
                     floatingNav.classList.remove('show');
                     floatingNav.classList.add('hide');
-                    console.log('Hiding floating nav - back to top');
+                    console.log('Hiding floating nav - back to top (0% progress)');
                     setTimeout(() => {
                         floatingNav.classList.remove('hide');
                     }, 400);
