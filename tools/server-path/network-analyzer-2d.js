@@ -333,6 +333,11 @@ class NetworkPathAnalyzer2D {
         const pathContainer = document.createElement('div');
         pathContainer.className = 'network-path-2d';
 
+        // Create connections container
+        const connectionsContainer = document.createElement('div');
+        connectionsContainer.className = 'chain-connections';
+        pathContainer.appendChild(connectionsContainer);
+
         // Style for node colors
         const nodeColors = {
             client: '#00ff41',
@@ -344,6 +349,17 @@ class NetworkPathAnalyzer2D {
             server: '#ff4444'
         };
 
+        // Node positions for chain layout (relative to container)
+        const nodePositions = [
+            { x: 50, y: 20 },   // Your Device (top center)
+            { x: 25, y: 80 },   // Local Router (left)
+            { x: 75, y: 140 },  // ISP Network (right)
+            { x: 30, y: 200 },  // Internet Core (left)
+            { x: 70, y: 260 },  // GitHub CDN (right)
+            { x: 40, y: 320 },  // Load Balancer (left)
+            { x: 50, y: 380 }   // Target Server (bottom center)
+        ];
+
         // Add each node to the path
         this.networkData.serverPath.forEach((nodeData, index) => {
             // Create node container
@@ -354,6 +370,7 @@ class NetworkPathAnalyzer2D {
             const node = document.createElement('div');
             node.className = 'network-node';
             node.style.backgroundColor = nodeColors[nodeData.type] || nodeColors.client;
+            node.style.borderColor = nodeColors[nodeData.type] || nodeColors.client;
             node.setAttribute('data-node-id', nodeData.id);
             
             // Create node icon
@@ -367,15 +384,14 @@ class NetworkPathAnalyzer2D {
             nodeLabel.className = 'node-label';
             nodeLabel.textContent = nodeData.name;
             
-            // Create node details container (hidden initially)
-            const nodeDetails = document.createElement('div');
-            nodeDetails.className = 'node-details';
-            nodeDetails.style.display = 'none';
+            // Create hover details
+            const hoverDetails = document.createElement('div');
+            hoverDetails.className = 'node-hover-details';
+            hoverDetails.style.borderColor = nodeColors[nodeData.type] || nodeColors.client;
+            hoverDetails.innerHTML = this.generateHoverDetailsHTML(nodeData);
+            node.appendChild(hoverDetails);
             
-            // Add detailed information to the node details
-            nodeDetails.innerHTML = this.generateNodeDetailsHTML(nodeData);
-            
-            // Toggle details on node click
+            // Click handler for full details modal
             node.addEventListener('click', () => {
                 this.showNodeDetails(nodeData);
             });
@@ -384,30 +400,71 @@ class NetworkPathAnalyzer2D {
             nodeContainer.appendChild(node);
             nodeContainer.appendChild(nodeLabel);
             
-            // Create connection line if not the last node
-            if (index < this.networkData.serverPath.length - 1) {
-                const connection = document.createElement('div');
-                connection.className = 'network-connection';
-                
-                // Add data packets to the connection
-                for (let i = 0; i < 3; i++) {
-                    const packet = document.createElement('div');
-                    packet.className = 'data-packet';
-                    packet.style.animationDelay = `${i * 0.5}s`;
-                    connection.appendChild(packet);
-                }
-                
-                nodeContainer.appendChild(connection);
-            }
-            
             pathContainer.appendChild(nodeContainer);
         });
+
+        // Create connection lines between nodes
+        this.createChainConnections(connectionsContainer, nodePositions);
         
         // Add the path container to the network map
         networkMap.appendChild(pathContainer);
         
         // Save reference to server nodes
         this.serverNodes = Array.from(document.querySelectorAll('.network-node'));
+    }
+
+    createChainConnections(container, positions) {
+        for (let i = 0; i < positions.length - 1; i++) {
+            const start = positions[i];
+            const end = positions[i + 1];
+            
+            // Calculate connection line properties
+            const deltaX = end.x - start.x;
+            const deltaY = end.y - start.y;
+            const length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+            
+            // Create connection line
+            const connectionLine = document.createElement('div');
+            connectionLine.className = 'connection-line';
+            connectionLine.style.width = `${length}%`;
+            connectionLine.style.left = `${start.x}%`;
+            connectionLine.style.top = `${start.y + 40}px`; // Offset for node center
+            connectionLine.style.transform = `rotate(${angle}deg)`;
+            connectionLine.style.transformOrigin = 'left center';
+            
+            // Add flowing data packets
+            for (let j = 0; j < 2; j++) {
+                const packet = document.createElement('div');
+                packet.className = 'data-packet';
+                packet.style.animationDelay = `${j * 2 + i * 0.5}s`;
+                connectionLine.appendChild(packet);
+            }
+            
+            container.appendChild(connectionLine);
+        }
+    }
+
+    generateHoverDetailsHTML(nodeData) {
+        let detailsHTML = `
+            <div style="text-align: center; margin-bottom: 8px; font-weight: bold; color: inherit;">
+                ${nodeData.name}
+            </div>
+        `;
+        
+        if (nodeData.details) {
+            for (const [key, value] of Object.entries(nodeData.details)) {
+                const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                detailsHTML += `
+                    <div class="hover-detail-item">
+                        <span class="hover-detail-key">${formattedKey}:</span>
+                        <span class="hover-detail-value">${value}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        return detailsHTML;
     }
 
     getNodeIcon(nodeType) {
