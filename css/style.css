@@ -1820,7 +1820,7 @@ footer {
 /* Floating Terminal Button */
 .floating-terminal-btn {
     position: fixed;
-    bottom: 30px;
+    bottom: 80px;
     left: 0;
     right: 0;
     z-index: 1000;
@@ -2291,7 +2291,7 @@ footer {
 /* Responsive adjustments for floating buttons */
 @media (max-width: 768px) {
     .floating-terminal-btn {
-        bottom: 20px;
+        bottom: 60px;
     }
     
     .terminal-fab {
