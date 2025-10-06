@@ -800,7 +800,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Initialize the Easter Egg when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const easterEgg = new EasterEggController();
-    easterEgg.checkIfAlreadyUnlocked();
-});
+const easterEgg = new EasterEggController();
+easterEgg.checkIfAlreadyUnlocked();
+
+}); // Close the main DOMContentLoaded event listener
