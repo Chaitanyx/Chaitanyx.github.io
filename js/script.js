@@ -138,11 +138,10 @@ sections.forEach(section => {
 
 
 
-// Floating navigation on scroll - appears when header is not visible
+// Floating navigation on scroll - appears when scrolled down
 let lastScrollTop = 0;
 let scrollTimeout;
 const floatingNav = document.querySelector('.floating-nav');
-const header = document.querySelector('header');
 
 window.addEventListener('scroll', function() {
     // Simple scroll indicator
@@ -153,26 +152,23 @@ window.addEventListener('scroll', function() {
         scrollIndicator.style.width = scrolledPercent + '%';
     }
     
-    // Floating navigation logic - show when header is not visible
-    if (floatingNav && header) {
+    // Floating navigation logic - show when scrolled down past 200px
+    if (floatingNav) {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const headerHeight = header.offsetHeight;
-        const headerBottom = header.offsetTop + headerHeight;
         
-        // Clear previous timeout
-        clearTimeout(scrollTimeout);
-        
-        // Show floating nav when scrolled past header (header not visible)
-        if (currentScroll > headerBottom) {
+        // Show floating nav when scrolled down more than 200px
+        if (currentScroll > 200) {
             if (!floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('hide');
                 floatingNav.classList.add('show');
+                console.log('Showing floating nav at scroll:', currentScroll);
             }
         } else {
-            // Header is visible - hide floating nav
+            // Near top - hide floating nav
             if (floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('show');
                 floatingNav.classList.add('hide');
+                console.log('Hiding floating nav at scroll:', currentScroll);
                 setTimeout(() => {
                     floatingNav.classList.remove('hide');
                 }, 400);
