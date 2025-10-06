@@ -25,8 +25,8 @@
             <div class="analysis-card">
                 <div class="card-header">
                     <h3><i class="fas fa-network-wired"></i> Connection Overview</h3>
-                    <button class="analyze-btn" onclick="analyzeConnection()">
-                        <i class="fas fa-play"></i> Analyze
+                    <button class="analyze-btn" id="analyzeBtn" onclick="analyzeConnection()">
+                        <i class="fas fa-play"></i> Analyze Network
                     </button>
                 </div>
                 <div class="card-content">
@@ -51,10 +51,10 @@
             <!-- Network Path Visualization -->
             <div class="analysis-card full-width">
                 <div class="card-header">
-                    <h3><i class="fas fa-project-diagram"></i> Network Path Visualization</h3>
+                    <h3><i class="fas fa-project-diagram"></i> Network Path Visualization (2D)</h3>
                     <div class="path-controls">
-                        <button onclick="toggleAnimation()"><i class="fas fa-play"></i> Animate</button>
-                        <button onclick="exportPath()"><i class="fas fa-download"></i> Export</button>
+                        <button class="control-button" onclick="toggleAnimation()"><i class="fas fa-play"></i> Toggle Animation</button>
+                        <button class="control-button" onclick="exportPath()"><i class="fas fa-download"></i> Export Data</button>
                     </div>
                 </div>
                 <div class="card-content">
@@ -220,9 +220,6 @@
         </a>
     </div>
 
-    <script src="dns-analyzer.js"></script>
-    <script src="performance-monitor.js"></script>
-    <script src="visualization.js"></script>
-    <script src="network-analyzer-fixed.js"></script>
+    <script src="network-analyzer-2d.js"></script>
 </body>
 </html>
