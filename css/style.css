@@ -1825,29 +1825,33 @@ footer {
     right: 0;
     z-index: 1000;
     pointer-events: none; /* Allow clicking through the container */
+    filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
 }
 
-/* Tools FAB Styles (Left Side) */
+/* Tools FAB Styles (Left Side) - Glassmorphism Floating Agent */
 .tools-fab {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #ffa500 0%, #ff6b6b 100%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 165, 0, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 165, 0, 0.3);
     border-radius: 50%;
     text-decoration: none;
     box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.2),
-        inset 0 2px 10px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 3px solid rgba(255, 255, 255, 0.15);
+        0 8px 32px rgba(255, 165, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: absolute;
     left: 30px;
     overflow: hidden;
     cursor: pointer;
-    pointer-events: auto; /* Re-enable clicking for the button */
-    animation: toolsPulse 2s ease-in-out infinite;
+    pointer-events: auto;
+    animation: floatBounce 3s ease-in-out infinite;
 }
 
 .tools-fab::before {
@@ -1857,9 +1861,10 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.6s;
+    border-radius: 50%;
 }
 
 .tools-fab:hover::before {
@@ -1867,20 +1872,23 @@ footer {
 }
 
 .tools-fab:hover {
-    transform: translateY(-8px) scale(1.15);
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(255, 165, 0, 0.35);
+    border-color: rgba(255, 165, 0, 0.5);
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        inset 0 2px 15px rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, #ffa500 0%, #ff6b6b 50%, #9333ea 100%);
+        0 12px 40px rgba(255, 165, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .tools-icon {
-    font-size: 28px;
-    color: #000;
+    font-size: 24px;
+    color: rgba(255, 165, 0, 0.9);
     font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     z-index: 1;
     position: relative;
+    filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.6));
     animation: iconBounce 2s ease-in-out infinite;
 }
 
@@ -1889,8 +1897,10 @@ footer {
     left: 85px;
     top: 50%;
     transform: translateY(-50%);
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
-    color: #ffa500;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: rgba(255, 165, 0, 0.95);
     padding: 12px 16px;
     border-radius: 12px;
     font-size: 14px;
@@ -1898,10 +1908,11 @@ footer {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(255, 165, 0, 0.3);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(255, 165, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     min-width: 120px;
     text-align: center;
 }
@@ -1909,14 +1920,14 @@ footer {
 .tools-tooltip::before {
     content: '';
     position: absolute;
-    left: -8px;
+    left: -6px;
     top: 50%;
     transform: translateY(-50%);
     width: 0;
     height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid rgba(0, 0, 0, 0.95);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid rgba(0, 0, 0, 0.4);
 }
 
 .tools-tooltip::after {
@@ -1926,6 +1937,7 @@ footer {
     top: 50%;
     transform: translateY(-50%);
     font-size: 12px;
+    filter: drop-shadow(0 0 4px rgba(255, 165, 0, 0.6));
     animation: swordFloat 1s ease-in-out infinite alternate;
 }
 
@@ -1936,26 +1948,30 @@ footer {
 }
 
 /* Terminal FAB Styles (Right Side) */
+/* Terminal FAB Styles (Right Side) - Glassmorphism Floating Agent */
 .terminal-fab {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #00ff88 0%, #00aaff 100%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 255, 136, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 50%;
     text-decoration: none;
     box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.2),
-        inset 0 2px 10px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 3px solid rgba(255, 255, 255, 0.15);
+        0 8px 32px rgba(0, 255, 136, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: absolute;
     right: 30px;
     overflow: hidden;
     cursor: pointer;
-    pointer-events: auto; /* Re-enable clicking for the button */
-    animation: terminalPulse 2s ease-in-out infinite;
+    pointer-events: auto;
+    animation: floatBounce 3s ease-in-out infinite 1.5s;
 }
 
 .terminal-fab::before {
@@ -1965,9 +1981,10 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.6s;
+    border-radius: 50%;
 }
 
 .terminal-fab:hover::before {
@@ -1975,20 +1992,23 @@ footer {
 }
 
 .terminal-fab:hover {
-    transform: translateY(-8px) scale(1.15);
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(0, 255, 136, 0.35);
+    border-color: rgba(0, 255, 136, 0.5);
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        inset 0 2px 15px rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, #00ff88 0%, #00aaff 50%, #ff6b6b 100%);
+        0 12px 40px rgba(0, 255, 136, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .terminal-icon {
-    font-size: 28px;
-    color: #000;
+    font-size: 24px;
+    color: rgba(0, 255, 136, 0.9);
     font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     z-index: 1;
     position: relative;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6));
     animation: iconBounce 2s ease-in-out infinite;
 }
 
@@ -1997,8 +2017,10 @@ footer {
     right: 85px;
     top: 50%;
     transform: translateY(-50%);
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
-    color: #00ff88;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: rgba(0, 255, 136, 0.95);
     padding: 12px 16px;
     border-radius: 12px;
     font-size: 14px;
@@ -2006,10 +2028,11 @@ footer {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(0, 255, 136, 0.3);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 255, 136, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     min-width: 120px;
     text-align: center;
 }
@@ -2017,14 +2040,14 @@ footer {
 .terminal-tooltip::before {
     content: '';
     position: absolute;
-    right: -8px;
+    right: -6px;
     top: 50%;
     transform: translateY(-50%);
     width: 0;
     height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 8px solid rgba(0, 0, 0, 0.95);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid rgba(0, 0, 0, 0.4);
 }
 
 .terminal-tooltip::after {
@@ -2034,6 +2057,7 @@ footer {
     top: 50%;
     transform: translateY(-50%);
     font-size: 12px;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 136, 0.6));
     animation: rocketFloat 1s ease-in-out infinite alternate;
 }
 
@@ -2271,13 +2295,15 @@ footer {
     }
     
     .terminal-fab {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         right: 20px;
+        background: rgba(0, 255, 136, 0.3);
+        backdrop-filter: blur(15px);
     }
     
     .terminal-icon {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .terminal-tooltip {
@@ -2285,16 +2311,56 @@ footer {
     }
     
     .tools-fab {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         left: 20px;
+        background: rgba(255, 165, 0, 0.3);
+        backdrop-filter: blur(15px);
     }
     
     .tools-icon {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .tools-tooltip {
         display: none; /* Hide tooltip on mobile */
+    }
+}
+
+/* Floating Bounce Animation for Glassmorphism Agents */
+@keyframes floatBounce {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% { 
+        transform: translateY(-8px) rotate(1deg);
+    }
+    50% { 
+        transform: translateY(-4px) rotate(0deg);
+    }
+    75% { 
+        transform: translateY(-12px) rotate(-1deg);
+    }
+}
+
+/* Enhanced Icon Bounce Animation */
+@keyframes iconBounce {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+    }
+    50% { 
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Glassmorphism Pulse Animation */
+@keyframes glassPulse {
+    0%, 100% { 
+        backdrop-filter: blur(20px);
+        background: rgba(255, 165, 0, 0.25);
+    }
+    50% { 
+        backdrop-filter: blur(25px);
+        background: rgba(255, 165, 0, 0.3);
     }
 }
