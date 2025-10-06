@@ -138,11 +138,11 @@ sections.forEach(section => {
 
 
 
-// Floating navigation on scroll - appears at skills section and stays persistent
+// Floating navigation on scroll - appears when header is not visible
 let lastScrollTop = 0;
 let scrollTimeout;
 const floatingNav = document.querySelector('.floating-nav');
-const skillsSection = document.querySelector('#skills');
+const header = document.querySelector('header');
 
 window.addEventListener('scroll', function() {
     // Simple scroll indicator
@@ -153,22 +153,23 @@ window.addEventListener('scroll', function() {
         scrollIndicator.style.width = scrolledPercent + '%';
     }
     
-    // Floating navigation logic - persistent from skills section onwards
-    if (floatingNav && skillsSection) {
+    // Floating navigation logic - show when header is not visible
+    if (floatingNav && header) {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const skillsSectionTop = skillsSection.offsetTop - 100; // Show slightly before skills section
+        const headerHeight = header.offsetHeight;
+        const headerBottom = header.offsetTop + headerHeight;
         
         // Clear previous timeout
         clearTimeout(scrollTimeout);
         
-        // Show floating nav when reaching skills section and keep it persistent
-        if (currentScroll >= skillsSectionTop) {
+        // Show floating nav when scrolled past header (header not visible)
+        if (currentScroll > headerBottom) {
             if (!floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('hide');
                 floatingNav.classList.add('show');
             }
         } else {
-            // Before skills section - hide floating nav
+            // Header is visible - hide floating nav
             if (floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('show');
                 floatingNav.classList.add('hide');
@@ -323,25 +324,28 @@ document.querySelectorAll('.modern-btn').forEach(btn => {
                     return entities[match];
                 });
                 
-                // Add typing effect
+                // Add smooth typing effect
                 let currentText = '';
                 const targetText = sanitizedValue;
                 let index = 0;
                 
+                // Clear any existing content
+                field.textContent = '';
+                
                 const typeInterval = setInterval(() => {
                     if (index < targetText.length) {
                         currentText += targetText.charAt(index);
-                        field.textContent = currentText; // Use textContent for security
+                        field.textContent = currentText;
                         index++;
                     } else {
                         clearInterval(typeInterval);
-                        // Add glow effect when complete
-                        field.style.animation = 'glow 0.5s ease-in-out';
+                        // Add subtle glow effect when complete
+                        field.style.animation = 'glow 0.8s ease-in-out';
                         setTimeout(() => {
                             field.style.animation = '';
-                        }, 500);
+                        }, 800);
                     }
-                }, 50 + Math.random() * 50); // Random typing speed
+                }, 40); // Consistent typing speed
             }
         }
         
