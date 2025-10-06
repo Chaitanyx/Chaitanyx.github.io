@@ -138,7 +138,7 @@ sections.forEach(section => {
 
 
 
-// Floating navigation on scroll - appears when scrolled down
+// Floating navigation on scroll - appears when scroll indicator starts glowing
 let lastScrollTop = 0;
 let scrollTimeout;
 const floatingNav = document.querySelector('.floating-nav');
@@ -150,32 +150,32 @@ window.addEventListener('scroll', function() {
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrolledPercent = (window.scrollY / docHeight) * 100;
         scrollIndicator.style.width = scrolledPercent + '%';
-    }
-    
-    // Floating navigation logic - show when scrolled down past 200px
-    if (floatingNav) {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Show floating nav when scrolled down more than 200px
-        if (currentScroll > 200) {
-            if (!floatingNav.classList.contains('show')) {
-                floatingNav.classList.remove('hide');
-                floatingNav.classList.add('show');
-                console.log('Showing floating nav at scroll:', currentScroll);
-            }
-        } else {
-            // Near top - hide floating nav
-            if (floatingNav.classList.contains('show')) {
-                floatingNav.classList.remove('show');
-                floatingNav.classList.add('hide');
-                console.log('Hiding floating nav at scroll:', currentScroll);
-                setTimeout(() => {
+        // Floating navigation logic - show when scroll indicator starts appearing (scrolling has begun)
+        if (floatingNav) {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Show floating nav when scroll indicator has width (any scrolling has occurred)
+            if (scrolledPercent > 0 && currentScroll > 50) {
+                if (!floatingNav.classList.contains('show')) {
                     floatingNav.classList.remove('hide');
-                }, 400);
+                    floatingNav.classList.add('show');
+                    console.log('Showing floating nav with scroll indicator at:', scrolledPercent.toFixed(1) + '%');
+                }
+            } else {
+                // At very top - hide floating nav
+                if (floatingNav.classList.contains('show')) {
+                    floatingNav.classList.remove('show');
+                    floatingNav.classList.add('hide');
+                    console.log('Hiding floating nav - back to top');
+                    setTimeout(() => {
+                        floatingNav.classList.remove('hide');
+                    }, 400);
+                }
             }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         }
-        
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }
         scrollTimeout = setTimeout(() => {
             if (floatingNav.classList.contains('show')) {
