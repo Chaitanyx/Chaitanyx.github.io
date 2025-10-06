@@ -295,18 +295,8 @@ document.querySelectorAll('.modern-btn').forEach(btn => {
                 updateInfoField('connection-info', 'Not Available');
             }
             
-            // Show the section with a dramatic reveal
-            setTimeout(() => {
-                pawnedSection.style.display = 'block';
-                pawnedSection.style.opacity = '0';
-                pawnedSection.style.transform = 'translateY(20px)';
-                pawnedSection.style.transition = 'all 0.8s ease';
-                
-                setTimeout(() => {
-                    pawnedSection.style.opacity = '1';
-                    pawnedSection.style.transform = 'translateY(0)';
-                }, 100);
-            }, 2000); // Show after 2 seconds
+            // Show the section immediately without delay
+            pawnedSection.style.display = 'block';
         }
         
         function updateInfoField(fieldId, value) {
@@ -324,28 +314,8 @@ document.querySelectorAll('.modern-btn').forEach(btn => {
                     return entities[match];
                 });
                 
-                // Add smooth typing effect
-                let currentText = '';
-                const targetText = sanitizedValue;
-                let index = 0;
-                
-                // Clear any existing content
-                field.textContent = '';
-                
-                const typeInterval = setInterval(() => {
-                    if (index < targetText.length) {
-                        currentText += targetText.charAt(index);
-                        field.textContent = currentText;
-                        index++;
-                    } else {
-                        clearInterval(typeInterval);
-                        // Add subtle glow effect when complete
-                        field.style.animation = 'glow 0.8s ease-in-out';
-                        setTimeout(() => {
-                            field.style.animation = '';
-                        }, 800);
-                    }
-                }, 40); // Consistent typing speed
+                // Directly set the text without typing effect
+                field.textContent = sanitizedValue;
             }
         }
         
