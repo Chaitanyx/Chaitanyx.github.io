@@ -966,6 +966,254 @@ body {
     }
 }
 
+/* 2D Network Path Visualization */
+.network-path-2d {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0;
+    padding: 20px;
+    overflow-x: auto;
+    min-height: 180px;
+}
+
+.network-node-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 100px;
+}
+
+.network-node {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.network-node:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.node-icon {
+    font-size: 24px;
+    color: #000;
+}
+
+.node-label {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-primary);
+    max-width: 100px;
+}
+
+.network-connection {
+    position: absolute;
+    top: 30px;
+    right: -50%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(0,255,65,0.3) 0%, rgba(0,255,65,0.8) 100%);
+    z-index: -1;
+}
+
+.data-packet {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #00ff41;
+    animation: movePacket 3s linear infinite;
+}
+
+@keyframes movePacket {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.animate-paused .data-packet {
+    animation-play-state: paused;
+}
+
+/* Node details modal */
+.node-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #00ff41;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 10000;
+    max-width: 600px;
+    width: 90%;
+    color: #00ff41;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+    animation: modalFadeIn 0.3s ease-out;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.node-details-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #00ff41;
+}
+
+.node-details-header h3 {
+    margin: 0;
+    color: #00ff41;
+    font-size: 20px;
+}
+
+.node-description {
+    color: #ccc;
+    margin: 5px 0;
+}
+
+.node-location {
+    color: #00ff41;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.detail-key {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.detail-value {
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+}
+
+.node-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.action-btn {
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(0, 255, 65, 0.2);
+    transform: translateY(-2px);
+}
+
+/* DNS Chain Visualization */
+.dns-resolution-chain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.dns-step {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.dns-step-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(0, 255, 65, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: #00ff41;
+}
+
+.dns-step-details {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dns-step-name {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.dns-step-status {
+    font-size: 12px;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+}
+
+.dns-step-time {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.dns-step-arrow {
+    color: #00ff41;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.final-step {
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
 /* Progress indicator styles */
 .progress-container {
     position: fixed;
