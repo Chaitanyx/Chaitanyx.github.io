@@ -172,6 +172,13 @@ window.addEventListener('scroll', function() {
                     floatingNav.classList.remove('hide');
                     floatingNav.classList.add('show');
                     console.log('Showing floating nav - scroll progress:', scrolledPercent.toFixed(1) + '%');
+                    console.log('Element computed styles:', {
+                        display: getComputedStyle(floatingNav).display,
+                        visibility: getComputedStyle(floatingNav).visibility,
+                        opacity: getComputedStyle(floatingNav).opacity,
+                        top: getComputedStyle(floatingNav).top,
+                        zIndex: getComputedStyle(floatingNav).zIndex
+                    });
                 }
                 // Keep it visible - no hiding during scroll
             } else {
@@ -185,18 +192,7 @@ window.addEventListener('scroll', function() {
                     }, 400);
                 }
             }
-            
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         }
-    }
-        scrollTimeout = setTimeout(() => {
-            if (floatingNav.classList.contains('show')) {
-                floatingNav.classList.remove('show');
-                floatingNav.classList.add('hide');
-                setTimeout(() => {
-                    floatingNav.classList.remove('hide');
-                }, 400);
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }
 });
 
