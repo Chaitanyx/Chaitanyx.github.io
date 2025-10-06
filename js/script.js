@@ -138,10 +138,11 @@ sections.forEach(section => {
 
 
 
-// iOS-style floating navigation on scroll
+// Floating navigation on scroll - appears at skills section and stays persistent
 let lastScrollTop = 0;
 let scrollTimeout;
 const floatingNav = document.querySelector('.floating-nav');
+const skillsSection = document.querySelector('#skills');
 
 window.addEventListener('scroll', function() {
     // Simple scroll indicator
@@ -152,32 +153,22 @@ window.addEventListener('scroll', function() {
         scrollIndicator.style.width = scrolledPercent + '%';
     }
     
-    // iOS-style floating navigation logic
-    if (floatingNav) {
+    // Floating navigation logic - persistent from skills section onwards
+    if (floatingNav && skillsSection) {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const skillsSectionTop = skillsSection.offsetTop - 100; // Show slightly before skills section
         
         // Clear previous timeout
         clearTimeout(scrollTimeout);
         
-        // Show much earlier - when scrolled past just 80px (very early in first section)
-        if (currentScroll > 80) {
-            // Scrolling up - show floating nav with iOS animation
-            if (currentScroll < lastScrollTop && !floatingNav.classList.contains('show')) {
+        // Show floating nav when reaching skills section and keep it persistent
+        if (currentScroll >= skillsSectionTop) {
+            if (!floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('hide');
                 floatingNav.classList.add('show');
             }
-            // Scrolling down - hide floating nav after delay
-            else if (currentScroll > lastScrollTop && floatingNav.classList.contains('show')) {
-                floatingNav.classList.remove('show');
-                floatingNav.classList.add('hide');
-                
-                // Remove hide class after animation completes
-                setTimeout(() => {
-                    floatingNav.classList.remove('hide');
-                }, 400);
-            }
         } else {
-            // At top of page - hide floating nav
+            // Before skills section - hide floating nav
             if (floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('show');
                 floatingNav.classList.add('hide');
@@ -187,7 +178,8 @@ window.addEventListener('scroll', function() {
             }
         }
         
-        // Auto-hide after 4 seconds of no scrolling (like iOS notifications)
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }
         scrollTimeout = setTimeout(() => {
             if (floatingNav.classList.contains('show')) {
                 floatingNav.classList.remove('show');
@@ -195,9 +187,6 @@ window.addEventListener('scroll', function() {
                 setTimeout(() => {
                     floatingNav.classList.remove('hide');
                 }, 400);
-            }
-        }, 4000);
-        
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }
 });
