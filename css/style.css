@@ -1821,9 +1821,10 @@ footer {
 .floating-terminal-btn {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 0;
+    right: 0;
     z-index: 1000;
-    animation: terminalPulse 2s ease-in-out infinite;
+    pointer-events: none; /* Allow clicking through the container */
 }
 
 /* Tools FAB Styles (Left Side) */
@@ -1841,11 +1842,11 @@ footer {
         inset 0 2px 10px rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 3px solid rgba(255, 255, 255, 0.15);
-    position: fixed;
-    bottom: 30px;
+    position: absolute;
     left: 30px;
     overflow: hidden;
     cursor: pointer;
+    pointer-events: auto; /* Re-enable clicking for the button */
     animation: toolsPulse 2s ease-in-out infinite;
 }
 
@@ -1949,9 +1950,12 @@ footer {
         inset 0 2px 10px rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 3px solid rgba(255, 255, 255, 0.15);
-    position: relative;
+    position: absolute;
+    right: 30px;
     overflow: hidden;
     cursor: pointer;
+    pointer-events: auto; /* Re-enable clicking for the button */
+    animation: terminalPulse 2s ease-in-out infinite;
 }
 
 .terminal-fab::before {
@@ -2260,16 +2264,16 @@ footer {
     }
 }
 
-/* Responsive adjustments for floating button */
+/* Responsive adjustments for floating buttons */
 @media (max-width: 768px) {
     .floating-terminal-btn {
         bottom: 20px;
-        right: 20px;
     }
     
     .terminal-fab {
         width: 60px;
         height: 60px;
+        right: 20px;
     }
     
     .terminal-icon {
