@@ -142,6 +142,18 @@ sections.forEach(section => {
 let lastScrollTop = 0;
 const floatingNav = document.querySelector('.floating-nav');
 
+// Debug: Check if elements are found
+console.log('Floating nav element found:', floatingNav);
+if (floatingNav) {
+    console.log('Floating nav initial styles:', {
+        display: getComputedStyle(floatingNav).display,
+        visibility: getComputedStyle(floatingNav).visibility,
+        opacity: getComputedStyle(floatingNav).opacity,
+        top: getComputedStyle(floatingNav).top,
+        zIndex: getComputedStyle(floatingNav).zIndex
+    });
+}
+
 window.addEventListener('scroll', function() {
     // Simple scroll indicator
     const scrollIndicator = document.querySelector('.scroll-indicator');
