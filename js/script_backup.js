@@ -52,17 +52,26 @@ document.addEventListener('DOMContentLoaded', function() {
             const scrolledPercent = (window.scrollY / docHeight) * 100;
             scrollIndicator.style.width = scrolledPercent + '%';
             
-            // Floating navigation logic
+            // Show scroll indicator when scrolling starts
+            if (scrolledPercent > 0) {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.visibility = 'visible';
+            } else {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.visibility = 'hidden';
+            }
+            
+            // Floating navigation logic - only show when near the end (80% or more)
             if (floatingNav) {
-                if (scrolledPercent > 0) {
+                if (scrolledPercent >= 80) {
                     if (!floatingNav.classList.contains('show')) {
                         floatingNav.classList.add('show');
-                        console.log('Showing floating nav - scroll progress:', scrolledPercent.toFixed(1) + '%');
+                        console.log('Showing floating nav - near end of page:', scrolledPercent.toFixed(1) + '%');
                     }
                 } else {
                     if (floatingNav.classList.contains('show')) {
                         floatingNav.classList.remove('show');
-                        console.log('Hiding floating nav - back to top');
+                        console.log('Hiding floating nav - not near end of page');
                     }
                 }
             }
