@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U are hacked !!</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="parallax-bg parallax-layer" data-speed="0.2"></div>
+    <div class="parallax-bg parallax-layer2" data-speed="0.4"></div>
+    <div class="parallax-bg parallax-layer3" data-speed="0.6"></div>
+    <div class="scroll-indicator"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section id="about">
+        <img src="images/profile.svg" alt="Chaitanya" class="profile-pic">
+        <h1>Chaitanya</h1>
+        <p>Aspiring Cybersecurity Professional</p>
+        <p>Welcome to my portfolio. I am passionate about protecting digital assets and learning the latest in cybersecurity.</p>
+        <div class="about-humor">
+            <p><strong>Fun Fact:</strong> My firewall is so strong, even my mom can't get through it.</p>
+            <p><strong>Mission:</strong> To make hackers cry and users laugh (safely).</p>
+            <p><strong>Warning:</strong> If you find a vulnerability here, you get a free virtual cookie 🍪 (and a patch in 24 hours).</p>
+        </div>
+            <div id="ip-upper" style="color:#00aaff; font-size:0.9rem; margin-bottom:8px;"></div>
+    </section>
+
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>Network Security (I can spot a rogue device faster than you can say "WiFi password?")</li>
+            <li>Ethical Hacking (I break things so you don't have to)</li>
+            <li>Cryptography (My passwords are longer than my grocery list)</li>
+            <li>Security Auditing (I read logs for fun)</li>
+            <li>Python (I automate my own coffee breaks)</li>
+            <li>Social Engineering (I convinced my cat to use 2FA)</li>
+            <li>Incident Response (I panic gracefully)</li>
+        </ul>
+        <div class="skills-humor">
+            <p><em>Special Skill:</em> Can detect phishing emails before my inbox does.</p>
+        </div>
+    </section>
+
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Project 1: Vulnerability Scanner</h3>
+            <p>A simple Python-based vulnerability scanner that checks for open ports and common vulnerabilities.</p>
+        </div>
+        <div class="project">
+            <h3>Project 2: Keylogger</h3>
+            <p>Developed a basic keylogger in Python to understand and demonstrate the risks of malware.</p>
+        </div>
+        <div class="project">
+            <h3>Project 3: VRS – IOT Driven Vehicle Rental Platform</h3>
+            <p>A platform that leverages IoT devices for efficient vehicle tracking and management in rental services.</p>
+        </div>
+        <div class="project">
+            <h3>AI Emotion Recognition and Sentiment Analysis</h3>
+            <p>A project that utilizes machine learning to analyze text and determine the emotional tone behind it.</p>
+        </div>
+    </section>
+
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Python Bootcamp</li>
+            <li>Cloud Computing</li>
+            <li>Information Security</li>
+        </ul>
+    </section>
+
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>You can reach me at: <a href="mailto:chaitanyaladecr7@gmail.com">heeloclient@clickme.com</a></p>
+        <div class="social-links">
+            <a href="https://github.com/Chaitanyx" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="contact-humor">
+            <p><strong>Note:</strong> If you email me about a security bug, please include a meme.</p>
+            <p><strong>Disclaimer:</strong> No actual cookies will be sent, only virtual ones.</p>
+        </div>
+    </section>
+
+        <footer>
+                <p>&copy; 2025 Zedgo Glitcheze</p>
+        </footer>
+
+        <section id="pawned-section" style="display:none; text-align:center; margin-top:10px;">
+            <small id="ip-guess" style="color:#888; font-size:0.8rem;"></small>
+            <div style="color:#ff4444; font-size:0.9rem; margin-top:4px;">You have been pawned</div>
+        </section>
+            <script>
+            // Fetch user's IP and show in both sections
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip-guess').textContent = 'Your IP address (for the pawned section): ' + data.ip;
+                    document.getElementById('pawned-section').style.display = 'block';
+                })
+                .catch(() => {
+                    document.getElementById('ip-guess').textContent = 'Could not guess your IP address.';
+                    document.getElementById('pawned-section').style.display = 'block';
+                });
+                // Fetch user's IP and show only in pawned section
+                fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('ip-guess').textContent = 'Your IP address (for the pawned section): ' + data.ip;
+                        document.getElementById('pawned-section').style.display = 'block';
+                    })
+                    .catch(() => {
+                        document.getElementById('ip-guess').textContent = 'Could not guess your IP address.';
+                        document.getElementById('pawned-section').style.display = 'block';
+                    });
+            </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsenal Dashboard | Security Tools</title>
+
+    <!-- Link to main styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+</head>
+
+<body style="background: #050507;">
+
+    <!-- Floating Navigation Dock -->
+    <div class="floating-nav glass-dock">
+        <nav>
+            <ul>
+                <li><a href="../reconnaissance/recon.html" title="Reconnaissance">🔍</a></li>
+                <li><a href="../index.html#about">Profile</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Work</a></li>
+                <li><a href="../index.html#certifications">Certs</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="#" class="active" title="Tools Arsenal">⚔️</a></li>
+                <li><a href="../terminal/term.html" title="Terminal Mode">💻</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main style="padding-bottom: 120px;">
+        <header class="page-header" style="text-align: center; padding: 60px 0 40px;">
+            <h1 style="font-size: 3rem; margin-bottom: 16px;">Security <span style="color: #a1a1a6;">Arsenal</span></h1>
+            <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary); font-size: 1.1rem;">
+                A specialized toolkit for network intelligence, vulnerability assessment, and cryptographic defense.
+            </p>
+        </header>
+
+        <div class="arsenal-grid">
+
+            <!-- Network Path Analyzer (Featured) -->
+            <div class="arsenal-card" style="grid-column: span 2;">
+                <div class="tool-icon-large"><i class="fas fa-network-wired"></i></div>
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <h3>Network Path Analyzer</h3>
+                    <span class="status-indicator active">Deployed</span>
+                </div>
+                <p style="margin-top: 12px;">Advanced 3D topology mapper with real-time latency monitoring and
+                    hop-by-hop analysis. Visualizes complex infrastructure paths instantly.</p>
+
+                <div style="margin: 24px 0; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <span class="tech-tag">WebGL</span>
+                    <span class="tech-tag">Traceroute</span>
+                    <span class="tech-tag">GeoIP</span>
+                </div>
+
+                <div class="tool-meta">
+                    <a href="server-path/" class="btn-small btn-glow">
+                        <i class="fas fa-rocket"></i> Launch Tool
+                    </a>
+                    <a href="server-path/README.md" class="btn-small btn-text">
+                        Documentation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Vulnerability Scanner -->
+            <div class="arsenal-card">
+                <div class="tool-icon-large"><i class="fas fa-biohazard"></i></div>
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <h3>Vuln Scanner</h3>
+                    <span class="status-indicator"
+                        style="background: rgba(255, 170, 0, 0.1); color: #ffaa00;">Beta</span>
+                </div>
+                <p style="margin-top: 12px;">Automated OWASP Top 10 scanner. Detects XSS, SQLi, and misconfigurations.
+                </p>
+                <div class="tool-meta">
+                    <span class="btn-small" style="opacity: 0.6; cursor: default;">
+                        In Development
+                    </span>
+                </div>
+            </div>
+
+            <!-- Cryptography Suite -->
+            <div class="arsenal-card">
+                <div class="tool-icon-large"><i class="fas fa-key"></i></div>
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <h3>Crypto Suite</h3>
+                    <span class="status-indicator"
+                        style="background: rgba(255,255,255,0.05); color: var(--text-secondary);">Planned</span>
+                </div>
+                <p style="margin-top: 12px;">Modular cryptographic toolkit for hash cracking, key generation, and cipher
+                    analysis.</p>
+                <div class="tool-meta">
+                    <span class="btn-small" style="opacity: 0.5;">Q2 2025</span>
+                </div>
+            </div>
+
+            <!-- PenTest Toolkit -->
+            <div class="arsenal-card">
+                <div class="tool-icon-large"><i class="fas fa-terminal"></i></div>
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <h3>PenTest Core</h3>
+                    <span class="status-indicator"
+                        style="background: rgba(255,255,255,0.05); color: var(--text-secondary);">Planned</span>
+                </div>
+                <p style="margin-top: 12px;">Integrates common exploit databases with automated recon scripts.</p>
+                <div class="tool-meta">
+                    <span class="btn-small" style="opacity: 0.5;">Q1 2025</span>
+                </div>
+            </div>
+
+            <!-- Other Utilities (Small) -->
+            <div class="arsenal-card" style="padding: 24px; min-height: auto;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <i class="fas fa-shield-alt" style="font-size: 1.5rem; color: var(--text-secondary);"></i>
+                    <div>
+                        <h4 style="font-size: 1rem; color: var(--text-primary);">Firewall Tester</h4>
+                        <div style="font-size: 0.8rem; color: var(--text-tertiary);">Packet Analysis</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arsenal-card" style="padding: 24px; min-height: auto;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <i class="fas fa-wifi" style="font-size: 1.5rem; color: var(--text-secondary);"></i>
+                    <div>
+                        <h4 style="font-size: 1rem; color: var(--text-primary);">WiFi Auditor</h4>
+                        <div style="font-size: 0.8rem; color: var(--text-tertiary);">Signal & Handshake</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Main script for spotlight effects -->
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
