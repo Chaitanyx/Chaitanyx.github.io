@@ -1,136 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>U are hacked !!</title>
+    <title>Chaitanya | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+    <meta name="robots" content="index, follow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="parallax-bg parallax-layer" data-speed="0.2"></div>
-    <div class="parallax-bg parallax-layer2" data-speed="0.4"></div>
-    <div class="parallax-bg parallax-layer3" data-speed="0.6"></div>
-    <div class="scroll-indicator"></div>
-    <header>
+
+    <!-- Floating Navigation Dock -->
+    <div class="floating-nav glass-dock">
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="reconnaissance/recon.html" title="Reconnaissance">🔍</a></li>
+                <li><a href="#about">Profile</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#certifications">Certs</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="tools/arsenal.html" title="Tools Arsenal">⚔️</a></li>
+                <li><a href="terminal/term.html" title="Terminal Mode">💻</a></li>
             </ul>
         </nav>
-    </header>
+    </div>
 
+    <main>
+        <section id="about">
+            <h1 data-text="Chaitanya">Chaitanya</h1>
+            <h2 style="font-weight: 300; color: var(--text-primary); opacity: 0.8; margin-top: -10px;">Security Analyst
+                & Developer</h2>
 
-    <section id="about">
-        <img src="images/profile.svg" alt="Chaitanya" class="profile-pic">
-        <h1>Chaitanya</h1>
-        <p>Aspiring Cybersecurity Professional</p>
-        <p>Welcome to my portfolio. I am passionate about protecting digital assets and learning the latest in cybersecurity.</p>
-        <div class="about-humor">
-            <p><strong>Fun Fact:</strong> My firewall is so strong, even my mom can't get through it.</p>
-            <p><strong>Mission:</strong> To make hackers cry and users laugh (safely).</p>
-            <p><strong>Warning:</strong> If you find a vulnerability here, you get a free virtual cookie 🍪 (and a patch in 24 hours).</p>
-        </div>
-            <div id="ip-upper" style="color:#00aaff; font-size:0.9rem; margin-bottom:8px;"></div>
-    </section>
+            <div style="max-width: 600px; margin: 32px auto;">
+                <p>Welcome to my digital space. I specialize in protecting digital assets, identifying vulnerabilities,
+                    and building secure, scalable systems.</p>
 
+                <div class="about-humor" style="margin-top: 32px;">
+                    <p><strong>Mission:</strong> Securing the digital frontier, one patch at a time.</p>
+                </div>
+            </div>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Network Security (I can spot a rogue device faster than you can say "WiFi password?")</li>
-            <li>Ethical Hacking (I break things so you don't have to)</li>
-            <li>Cryptography (My passwords are longer than my grocery list)</li>
-            <li>Security Auditing (I read logs for fun)</li>
-            <li>Python (I automate my own coffee breaks)</li>
-            <li>Social Engineering (I convinced my cat to use 2FA)</li>
-            <li>Incident Response (I panic gracefully)</li>
-        </ul>
-        <div class="skills-humor">
-            <p><em>Special Skill:</em> Can detect phishing emails before my inbox does.</p>
-        </div>
-    </section>
-
-
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Project 1: Vulnerability Scanner</h3>
-            <p>A simple Python-based vulnerability scanner that checks for open ports and common vulnerabilities.</p>
-        </div>
-        <div class="project">
-            <h3>Project 2: Keylogger</h3>
-            <p>Developed a basic keylogger in Python to understand and demonstrate the risks of malware.</p>
-        </div>
-        <div class="project">
-            <h3>Project 3: VRS – IOT Driven Vehicle Rental Platform</h3>
-            <p>A platform that leverages IoT devices for efficient vehicle tracking and management in rental services.</p>
-        </div>
-        <div class="project">
-            <h3>AI Emotion Recognition and Sentiment Analysis</h3>
-            <p>A project that utilizes machine learning to analyze text and determine the emotional tone behind it.</p>
-        </div>
-    </section>
-
-
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Python Bootcamp</li>
-            <li>Cloud Computing</li>
-            <li>Information Security</li>
-        </ul>
-    </section>
-
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>You can reach me at: <a href="mailto:chaitanyaladecr7@gmail.com">heeloclient@clickme.com</a></p>
-        <div class="social-links">
-            <a href="https://github.com/Chaitanyx" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-        <div class="contact-humor">
-            <p><strong>Note:</strong> If you email me about a security bug, please include a meme.</p>
-            <p><strong>Disclaimer:</strong> No actual cookies will be sent, only virtual ones.</p>
-        </div>
-    </section>
-
-        <footer>
-                <p>&copy; 2025 Zedgo Glitcheze</p>
-        </footer>
-
-        <section id="pawned-section" style="display:none; text-align:center; margin-top:10px;">
-            <small id="ip-guess" style="color:#888; font-size:0.8rem;"></small>
-            <div style="color:#ff4444; font-size:0.9rem; margin-top:4px;">You have been pawned</div>
+            <a href="#projects" class="modern-btn">View Projects</a>
         </section>
-            <script>
-            // Fetch user's IP and show in both sections
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('ip-guess').textContent = 'Your IP address (for the pawned section): ' + data.ip;
-                    document.getElementById('pawned-section').style.display = 'block';
-                })
-                .catch(() => {
-                    document.getElementById('ip-guess').textContent = 'Could not guess your IP address.';
-                    document.getElementById('pawned-section').style.display = 'block';
-                });
-                // Fetch user's IP and show only in pawned section
-                fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('ip-guess').textContent = 'Your IP address (for the pawned section): ' + data.ip;
-                        document.getElementById('pawned-section').style.display = 'block';
-                    })
-                    .catch(() => {
-                        document.getElementById('ip-guess').textContent = 'Could not guess your IP address.';
-                        document.getElementById('pawned-section').style.display = 'block';
-                    });
-            </script>
 
+
+        <section id="skills">
+            <div class="section-caption">Expertise</div>
+            <h2>Technical Arsenal</h2>
+
+            <div class="skills-grid">
+                <div class="skill-item glass-panel">
+                    <div class="skill-header">
+                        <span style="font-size: 1.5rem;">🔒</span>
+                        <span class="skill-name">Network Security</span>
+                    </div>
+                    <p class="skill-desc">Network monitoring, vulnerability scanning, and secure architecture design.
+                    </p>
+                </div>
+
+                <div class="skill-item glass-panel">
+                    <div class="skill-header">
+                        <span style="font-size: 1.5rem;">🎯</span>
+                        <span class="skill-name">Ethical Hacking</span>
+                    </div>
+                    <p class="skill-desc">Penetration testing to identify and patch system weaknesses.</p>
+                </div>
+
+                <div class="skill-item glass-panel">
+                    <div class="skill-header">
+                        <span style="font-size: 1.5rem;">🔐</span>
+                        <span class="skill-name">Cryptography</span>
+                    </div>
+                    <p class="skill-desc">Implementation of strong encryption standards and protocols.</p>
+                </div>
+
+                <div class="skill-item glass-panel">
+                    <div class="skill-header">
+                        <span style="font-size: 1.5rem;">🔍</span>
+                        <span class="skill-name">Security Auditing</span>
+                    </div>
+                    <p class="skill-desc">Comprehensive log analysis and compliance auditing (ISO/IEC).</p>
+                </div>
+
+                <div class="skill-item glass-panel">
+                    <div class="skill-header">
+                        <span style="font-size: 1.5rem;">🐍</span>
+                        <span class="skill-name">Python Automation</span>
+                    </div>
+                    <p class="skill-desc">Scripting for security automation and tool development.</p>
+                </div>
+
+                <div class="skill-item glass-panel">
+                    <div class="skill-header">
+                        <span style="font-size: 1.5rem;">🚨</span>
+                        <span class="skill-name">Incident Response</span>
+                    </div>
+                    <p class="skill-desc">Rapid identification and mitigation of security incidents.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="projects">
+            <div class="section-caption">Portfolio</div>
+            <h2>Accomplishments</h2>
+
+            <div class="projects-grid">
+                <!-- OpacCred (Running/Active) -->
+                <div class="project-card glass-panel">
+                    <div class="project-header">
+                        <span style="font-size: 2rem;">💳</span>
+                    </div>
+                    <h3>OpacCred</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">FinTech</span>
+                        <span class="tech-tag">Web</span>
+                        <span class="tech-tag">AI</span>
+                    </div>
+                    <p>Discover the Right Card for You. A smart recommendation engine for financial products.</p>
+                    <div class="project-status" style="margin-top: auto; padding-top: 16px;">
+                        <span class="status-indicator active">Active Development</span>
+                    </div>
+                </div>
+
+                <!-- OpacGuard (Completed/Deployed now as per request inference or keep active? User said "add this... to running... and other two completed". I will assume OpacGuard should be completed or removed? 
+                Actually, usually "the other two" refers to the ones that ARE completed. 
+                I will keep OpacGuard but maybe mark it completed if it was the previous active one? 
+                Let's stick to adding OpacCred. I'll mark OpacGuard as Completed for safety if "other two" implies limited set, or just leave it. 
+                Actually, "OpacCred" sounds like it might supersede OpacGuard. 
+                But to be safe, I'll just add OpacCred.
+                Wait, "the other two completed status". Currently PiVPN and IoT are completed. 
+                I will leave OpacGuard as is (Active) or maybe user implies OpacGuard IS one of the completed?
+                I'll mark OpacGuard as Completed to satisfy "other two" ambiguity if OpacCred is the NEW running one. used to be OpacGuard. -->
+
+                <div class="project-card glass-panel">
+                    <div class="project-header">
+                        <span style="font-size: 2rem;">🛡️</span>
+                    </div>
+                    <h3>OpacGuard</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">ML</span>
+                        <span class="tech-tag">SHAP</span>
+                        <span class="tech-tag">Cloud</span>
+                    </div>
+                    <p>Cloud-based credit risk prediction utilizing Explainable AI (SHAP) to provide transparent risk
+                        assessments.</p>
+                    <div class="project-status" style="margin-top: auto; padding-top: 16px;">
+                        <span class="status-indicator completed">Completed</span>
+                    </div>
+                </div>
+
+                <div class="project-card glass-panel">
+                    <div class="project-header">
+                        <span style="font-size: 2rem;">🔒</span>
+                    </div>
+                    <h3>PiVPN Shield</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Hardware</span>
+                        <span class="tech-tag">Networking</span>
+                    </div>
+                    <p>Private VPN server implementation on Raspberry Pi to ensure encrypted traffic and privacy.</p>
+                    <div class="project-status" style="margin-top: auto; padding-top: 16px;">
+                        <span class="status-indicator completed">Deployed</span>
+                    </div>
+                </div>
+
+                <div class="project-card glass-panel">
+                    <div class="project-header">
+                        <span style="font-size: 2rem;">🚗</span>
+                    </div>
+                    <h3>IoT Vehicle Rental</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">IoT</span>
+                        <span class="tech-tag">Platform</span>
+                    </div>
+                    <p>IoT-leveraged platform for efficient vehicle tracking and fleet management.</p>
+                    <div class="project-status" style="margin-top: auto; padding-top: 16px;">
+                        <span class="status-indicator completed">Reference</span>
+                    </div>
+                </div>
+
+                <div class="project-card glass-panel">
+                    <div class="project-header">
+                        <span style="font-size: 2rem;">🧠</span>
+                    </div>
+                    <h3>Emotion AI</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">ML</span>
+                    </div>
+                    <p>Sentiment analysis system determining emotional tone from textual data.</p>
+                    <div class="project-status" style="margin-top: auto; padding-top: 16px;">
+                        <span class="status-indicator research">Research</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="certifications">
+            <div class="section-caption">Credentials</div>
+            <h2>Certifications</h2>
+
+            <div class="certifications-grid">
+                <!-- Ethical Hacker (Cisco) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">🎯</span>
+                        <div>
+                            <div class="cert-name">Ethical Hacker</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">Cisco</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blue Team Junior Analyst (SBT) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">🔵</span>
+                        <div>
+                            <div class="cert-name">Blue Team Jr. Analyst</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">SBT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ISO/IEC Lead Auditor (MasterMind) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <div>
+                            <div class="cert-name">ISO/IEC Lead Auditor</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">MasterMind</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Android bug Bounty Hunting (EC-Council) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">🐛</span>
+                        <div>
+                            <div class="cert-name">Android Bug Bounty</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">EC-Council</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SQL Injection Attacks (EC-Council) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">💉</span>
+                        <div>
+                            <div class="cert-name">SQL Injection Attacks</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">EC-Council</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Python Bootcamp (Udemy) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">🐍</span>
+                        <div>
+                            <div class="cert-name">Python Bootcamp</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">Udemy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Computing (Saylor) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">☁️</span>
+                        <div>
+                            <div class="cert-name">Cloud Computing</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">Saylor Academy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Security (Skillup) -->
+                <div class="cert-badge glass-panel">
+                    <div class="cert-header">
+                        <span style="font-size: 1.5rem;">🛡️</span>
+                        <div>
+                            <div class="cert-name">Information Security</div>
+                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">Skillup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="contact" style="padding-bottom: 120px; display: flex; justify-content: center;">
+            <div class="glass-panel"
+                style="padding: 60px; text-align: center; max-width: 700px; width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <div class="section-caption" style="margin-bottom: 24px;">Connect</div>
+                <h2 style="margin-bottom: 24px; font-size: 3rem;">Get in Touch</h2>
+
+                <p style="text-align: center; max-width: 500px; color: var(--text-secondary); margin-bottom: 40px;">
+                    Interested in collaboration, security consultation, or just want to discuss the latest zero-day? My
+                    inbox is always open.
+                </p>
+
+                <a href="mailto:chaitanyaladecr7@gmail.com" class="modern-btn" style="margin-bottom: 32px;">
+                    Say Hello <span style="margin-left: 8px;">👋</span>
+                </a>
+
+                <div class="social-links"
+                    style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; width: 100%; justify-content: center; gap: 32px;">
+                    <a href="https://github.com/Chaitanyx" target="_blank" rel="noopener noreferrer"
+                        style="display: flex; align-items: center; gap: 8px; opacity: 0.8; transition: opacity 0.2s;">
+                        <span style="font-size: 1.2rem;">📦</span> GitHub
+                    </a>
+                    <a href="#"
+                        style="display: flex; align-items: center; gap: 8px; opacity: 0.8; transition: opacity 0.2s;">
+                        <span style="font-size: 1.2rem;">💼</span> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 40px; color: var(--text-tertiary); font-size: 0.85rem;">
+            &copy; 2025 Zedgo Glitcheze
+        </footer>
+    </main>
+
+    <!-- Keep essential scripts but ensure they don't break the new UI -->
     <script src="js/script.js"></script>
 </body>
+
 </html>
